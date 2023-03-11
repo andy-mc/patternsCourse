@@ -5,10 +5,6 @@ class Address {
     this.state = state;
   }
 
-  deepCopy() {
-    return new Address(this.street, this.city, this.state);
-  }
-
   toString() {
     return `${this.street}, ${this.city}, ${this.state}`;
   }
@@ -18,10 +14,6 @@ class Person {
   constructor(name, address) {
     this.name = name;
     this.address = address;
-  }
-
-  deepCopy() {
-    return new Person(this.name, this.address.deepCopy());
   }
 
   toString() {

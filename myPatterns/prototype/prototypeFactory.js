@@ -75,24 +75,25 @@ class Serializer {
 }
 
 class EmployeeFactory {
+  static serializer = new Serializer([Person, Address]);
+  static nyStaff = new Person(null, new Address(null, 'New York', 'NY'));
+  static uioStaff = new Person(null, new Address(null, 'Quito', 'Ecuador'));
+
   static _newEmployee(prototype, name, street) {
-    const newPrototype = EmployeeFactory.serializer.deepCopy(prototype);
+    const newPrototype = this.serializer.deepCopy(prototype);
     newPrototype.name = name;
     newPrototype.address.street = street;
     return newPrototype;
   }
 
   static newNyStaff(name, street) {
-    return EmployeeFactory._newEmployee(EmployeeFactory.nyStaff, name, street);
+    return this._newEmployee(this.nyStaff, name, street);
   }
 
   static newUioStaff(name, street) {
-    return EmployeeFactory._newEmployee(EmployeeFactory.uioStaff, name, street);
+    return this._newEmployee(this.uioStaff, name, street);
   }
 }
-EmployeeFactory.serializer = new Serializer([Person, Address]);
-EmployeeFactory.nyStaff = new Person(null, new Address(null, 'New York', 'NY'));
-EmployeeFactory.uioStaff = new Person(null, new Address(null, 'Quito', 'Ecuador'));
 
 const person1 = EmployeeFactory.newNyStaff("Luigy", 1111)
 const person2 = EmployeeFactory.newUioStaff("Andy", 2222)

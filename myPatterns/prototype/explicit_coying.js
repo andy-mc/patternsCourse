@@ -31,7 +31,9 @@ class Serializer {
   }
 
   markRecursive(object) {
-    let idx = this.types.findIndex(t => t.name === object.constructor.name);
+    let idx = this.types.findIndex(t =>{ 
+      return t.name === object.constructor.name
+    });
 
     if (idx !== -1) {
       object["typeIndex"] = idx;
